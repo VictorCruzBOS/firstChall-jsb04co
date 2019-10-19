@@ -1,0 +1,150 @@
+'use strict';
+
+//    calculadora:
+
+let firstOperator = prompt('introduzca el primer número');
+let operation = prompt('¿que operacion quiere realizar (suma, resta, multiplicación, división, potencia)?');
+let secondOperator = prompt('introduzca el segundo número');
+
+firstOperator = +firstOperator;
+secondOperator = +secondOperator;
+
+function calculadora(firstOperator, secondOperator, operation) {
+  let result = 0;
+  switch (operation) {
+    case 'suma':
+      result = firstOperator + secondOperator;
+      console.log('resultado: ', result);
+      break;
+    case 'resta':
+      result = firstOperator - secondOperator;
+      console.log('resultado: ', result);
+      break;
+    case 'multiplicación':
+      result = firstOperator * secondOperator;
+      console.log('resultado: ', result);
+      break;
+    case 'división':
+      result = firstOperator / secondOperator;
+      console.log('resultado: ', result);
+      break;
+    case 'potencia':
+      result = firstOperator ** secondOperator;
+      console.log('resultado: ', result);
+      break;
+    default:
+      console.log('Ha ocurrido un error, verifique que los datos han sido introducidos correctamente');
+  }
+}
+calculadora(firstOperator, secondOperator, operation);
+
+
+// Dado Electronico
+
+function diceGame() {
+  let totalScore = 0;
+  while (totalScore < 50) {
+    let diceroll = Math.floor(Math.random() * 6) + 1;
+    totalScore = totalScore + diceroll;
+    console.log(`roll: ${diceroll}, Total acumulado: ${totalScore}  `);
+  }
+}
+
+diceGame();
+
+// Registro Academico
+
+const studentNames = ['juan', 'pedro', 'rosa', 'silvia', 'luis', 'david', 'maria', 'carmen', 'rafael', 'ignacio'];
+const studentAges = [18, 22, 30, 25, 19, 20, 21, 19, 20, 27];
+const studentGenders = ['m', 'm', 'f', 'f', 'm', 'm', 'f', 'f', 'm', 'm'];
+const studentSubjects = [
+  'Historia',
+  'Lengua',
+  'Ciencia',
+  'Ciencia',
+  'Historia',
+  'Ciencia',
+  'Lengua',
+  'Lengua',
+  'Historia',
+  'Ciencia'
+];
+const studentGroups = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const professorName = ['Alberto', 'Sofia', 'Horacio'];
+const ProfessorSubject = ['Ciencia', 'Historia', 'Lengua'];
+class Person {
+  name;
+  age;
+  gender;
+  constructor(names, ages, genders) {
+    this.name = names;
+    this.age = ages;
+    this.gender = genders;
+  }
+
+  static buildPerson(studentNames, studentAges, studentGenders) {
+    return studentNames.map((name, index) => {
+      return console.log(name, studentAges[index], studentGenders[index]);
+    });
+  }
+}
+
+class Student extends Person {
+  subject;
+  group;
+
+  constructor(studentNames, studentAges, studentGenders, studentSubjects, studentGroups) {
+    super(studentNames, studentAges, studentGenders);
+    this.subject = studentSubjects;
+    this.group = studentGroups;
+  }
+
+  static buildStudents(studentNames, studentAges, studentGenders, studentSubjects, studentGroups) {
+    return studentNames.map((name, index) => {
+      return new Student(name, studentAges[index], studentGenders[index], studentSubjects[index], studentGroups[index]);
+    });
+  }
+}
+
+const allStudents = Student.buildStudents(studentNames, studentAges, studentGenders, studentSubjects, studentGroups);
+console.log(allStudents);
+
+const teacherName = ['Alberto', 'Sofia', 'Horacio'];
+const teacherAge = [35, 28, 42];
+const teacherGender = ['m', 'f', 'm'];
+const teacherSubject = ['Ciencia', 'Historia', 'Lengua'];
+const teacherGroup = [1, 1, 1];
+
+class Teacher extends Person {
+  subject;
+  group;
+  studentList = [];
+  constructor(name, age, gender, subject, group) {
+    super(name, age, gender);
+    this.subject = subject;
+    this.group = group;
+  }
+
+  static buildTeacher(name, age, gender, subject, group) {
+    this.buildStudentList();
+    return name.map((name, index) => {
+      return new Teacher(name, age[index], gender[index], subject[index], group[index]);
+    });
+  }
+
+  static buildStudentList(allStudents) {
+    studentList = allStudents.filter(() => {
+      if (student.subject === teacher.subject && student.subject === teacher.subject);
+    });
+  }
+}
+
+const allTeachers = Teacher.buildTeacher(
+  teacherName,
+  teacherAge,
+  teacherGender,
+  teacherSubject,
+  teacherGroup,
+  allStudents
+);
+console.log(allTeachers);
