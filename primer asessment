@@ -48,6 +48,7 @@ function diceGame() {
     totalScore = totalScore + diceroll;
     console.log(`roll: ${diceroll}, Total acumulado: ${totalScore}  `);
   }
+  console.log('Fin de la partida');
 }
 
 diceGame();
@@ -57,18 +58,7 @@ diceGame();
 const studentNames = ['juan', 'pedro', 'rosa', 'silvia', 'luis', 'david', 'maria', 'carmen', 'rafael', 'ignacio'];
 const studentAges = [18, 22, 30, 25, 19, 20, 21, 19, 20, 27];
 const studentGenders = ['m', 'm', 'f', 'f', 'm', 'm', 'f', 'f', 'm', 'm'];
-const studentSubjects = [
-  'Historia',
-  'Lengua',
-  'Ciencia',
-  'Ciencia',
-  'Historia',
-  'Ciencia',
-  'Lengua',
-  'Lengua',
-  'Historia',
-  'Ciencia'
-];
+const studentSubjects = ['Historia', 'Lengua', 'Ciencia', 'Ciencia', 'Historia', 'Ciencia', 'Lengua', 'Lengua', 'Historia', 'Ciencia'];
 const studentGroups = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 const professorName = ['Alberto', 'Sofia', 'Horacio'];
 const ProfessorSubject = ['Ciencia', 'Historia', 'Lengua'];
@@ -126,25 +116,20 @@ class Teacher extends Person {
   }
 
   static buildTeacher(name, age, gender, subject, group) {
-    this.buildStudentList();
     return name.map((name, index) => {
       return new Teacher(name, age[index], gender[index], subject[index], group[index]);
     });
   }
 
   static buildStudentList(allStudents) {
-    studentList = allStudents.filter(() => {
-      if (student.subject === teacher.subject && student.subject === teacher.subject);
-    });
+    for (const Student in allStudents) {
+      if (Student.subject === Teacher.subject && Student.group === Teacher.group) {
+        this.Teacher.studentList.push(Student);
+      }
+    }
   }
 }
 
-const allTeachers = Teacher.buildTeacher(
-  teacherName,
-  teacherAge,
-  teacherGender,
-  teacherSubject,
-  teacherGroup,
-  allStudents
-);
+const allTeachers = Teacher.buildTeacher(teacherName, teacherAge, teacherGender, teacherSubject, teacherGroup, allStudents);
 console.log(allTeachers);
+
